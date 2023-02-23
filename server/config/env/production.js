@@ -51,7 +51,7 @@ module.exports = {
 
     default: {
       adapter: 'sails-postgresql',
-      url: 'postgres://wimverxbvkiynw:12fd021bc8408f0297329b34e3da02ba443ec58844ffa4d7b34849c3dc586ac8@ec2-34-246-227-219.eu-west-1.compute.amazonaws.com:5432/d9viusaemblgq4',
+      url: process.env.DATABASE_URL,
       /**
        *
        * More adapter-specific options
