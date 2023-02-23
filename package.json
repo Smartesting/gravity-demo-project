@@ -27,8 +27,8 @@
     "server:start": "npm start --prefix server",
     "server:start:prod": "npm run start:prod --prefix server",
     "server:test": "npm test --prefix server",
-    "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\"",
-    "start": "npm run client:build && ln -s /var/www/planka/client/build/index.html /var/www/planka/server/views/index.ejs && npm run server:start:prod"
+    "start": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\"",
+    "test": "npm run server:test && npm run client:test"
   },
   "lint-staged": {
     "client/**/*.{js,jsx}": [
