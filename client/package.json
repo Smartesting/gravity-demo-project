@@ -27,16 +27,9 @@
     },
     "parser": "@babel/eslint-parser",
     "parserOptions": {
-      "babelOptions": {
-        "presets": [
-          "airbnb"
-        ]
-      },
       "requireConfigFile": false
     },
     "extends": [
-      "airbnb",
-      "airbnb/hooks",
       "../package.json"
     ],
     "rules": {
