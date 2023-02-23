@@ -1,4 +1,4 @@
-# Planka
+# Gravity Demo project (based on Planka)
 #### Elegant open source project tracking
 
 ![David (path)](https://img.shields.io/github/package-json/v/plankanban/planka) ![Docker Pulls](https://img.shields.io/docker/pulls/meltyshev/planka) ![GitHub](https://img.shields.io/github/license/plankanban/planka)
