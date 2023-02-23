@@ -1,4 +1,5 @@
 # Gravity Demo project (based on Planka)
+
 #### Elegant open source project tracking
 
 ![David (path)](https://img.shields.io/github/package-json/v/plankanban/planka) ![Docker Pulls](https://img.shields.io/docker/pulls/meltyshev/planka) ![GitHub](https://img.shields.io/github/license/plankanban/planka)
@@ -6,6 +7,13 @@
 ![](https://raw.githubusercontent.com/plankanban/planka/master/demo.gif)
 
 [**Client demo**](https://plankanban.github.io/planka) (without server features).
+
+## GRAVITY Deployment
+
+- Install and setup Scalingo CLI
+- Add scalingo remote repository
+- `git push scalingo main:deploy`
+- TODO: move build from client into server /public folder (maybe possible with react-app-rewired or with ncp js)
 
 ## Features
 
@@ -21,6 +29,7 @@
 ## How to deploy Planka
 
 There are 2 types of installation:
+
 - [Without Docker](https://docs.planka.cloud/docs/installl-planka/Debian%20&%20Ubuntu)
 - [Dockerized](https://docs.planka.cloud/docs/installl-planka/Docker%20Compose)
 

@@ -33,6 +33,9 @@
     "server:test": "npm test --prefix server",
 
     "build": "npm run client:build",
+    "postbuild": "npm run copy",
+
+    "copy": "ncp ./client/build ./server/public",
     "start": "npm run server:start:prod",
     "test": "npm run server:test && npm run client:test",
 
