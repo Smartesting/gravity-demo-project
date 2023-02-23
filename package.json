@@ -31,11 +31,12 @@
     "server:start": "npm start --prefix server",
     "server:start:prod": "npm run start:prod --prefix server",
     "server:test": "npm test --prefix server",
-    "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\"",
 
     "build": "npm run client:build",
     "start": "npm run server:start:prod",
-    "test": "npm run server:test && npm run client:test"
+    "test": "npm run server:test && npm run client:test",
+
+    "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\""
   },
   "lint-staged": {
     "client/**/*.{js,jsx}": [
