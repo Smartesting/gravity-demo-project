@@ -34,7 +34,6 @@
     "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\"",
 
     "build": "npm run client:build",
-    "postbuild": "ln -s ./client/build/index.html ./server/views/index.ejs",
     "start": "npm run server:start:prod",
     "test": "npm run server:test && npm run client:test"
   },
