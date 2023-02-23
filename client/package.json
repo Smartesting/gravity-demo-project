@@ -27,9 +27,16 @@
     },
     "parser": "@babel/eslint-parser",
     "parserOptions": {
+      "babelOptions": {
+        "presets": [
+          "airbnb"
+        ]
+      },
       "requireConfigFile": false
     },
     "extends": [
+      "airbnb",
+      "airbnb/hooks",
       "../package.json"
     ],
     "rules": {
@@ -51,6 +58,7 @@
     "date-fns": "^2.29.3",
     "dequal": "^2.0.3",
     "easymde": "^2.18.0",
+    "eslint-config-airbnb": "^19.0.4",
     "history": "^5.3.0",
     "i18next": "^22.0.6",
     "i18next-browser-languagedetector": "^7.0.1",
@@ -97,7 +105,6 @@
     "babel-preset-airbnb": "^5.0.0",
     "chai": "^4.3.7",
     "eslint": "^8.28.0",
-    "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
