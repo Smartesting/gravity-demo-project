@@ -35,7 +35,7 @@
     "build": "npm run client:build",
     "postbuild": "npm run copy",
 
-    "copy": "ncp ./client/build ./server/public",
+    "copy": "cp -R ./client/build/ ./server/public",
     "start": "npm run server:start:prod",
     "test": "npm run server:test && npm run client:test",
 
