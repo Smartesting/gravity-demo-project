@@ -90,6 +90,10 @@ export const selectCurrentUserMembershipForCurrentBoard = createSelector(
       return boardMembershipModel;
     }
 
+    if (window.GravityCollector) {
+      window.GravityCollector.identifySession('role', boardMembershipModel.role);
+    }
+
     return boardMembershipModel.ref;
   },
 );
