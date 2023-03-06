@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "@juggle/resize-observer": "^3.4.0",
+    "@smartesting/gravity-data-collector": "^3.4.1",
     "babel-preset-airbnb": "^5.0.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",

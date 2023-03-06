@@ -16,6 +16,8 @@ const ACCESS_TOKEN_VERSION = '1';
 const POSITION_GAP = 65535;
 const ACTIVITIES_LIMIT = 50;
 
+const GRAVITY_AUTH_KEY = process.env.REACT_APP_GRAVITY_PROD_KEY || ' ';
+
 export default {
   VERSION,
   BASE_PATH,
@@ -26,4 +28,5 @@ export default {
   ACCESS_TOKEN_VERSION,
   POSITION_GAP,
   ACTIVITIES_LIMIT,
+  GRAVITY_AUTH_KEY,
 };
