@@ -1,4 +1,5 @@
 import { createSelector } from 'redux-orm';
+import { ampli } from '../ampli';
 
 import orm from '../orm';
 import { selectPath } from './router';
@@ -90,8 +91,12 @@ export const selectCurrentUserMembershipForCurrentBoard = createSelector(
       return boardMembershipModel;
     }
 
+    ampli.identify(currentUserId, {
+      boardRole: boardMembershipModel.role,
+    });
+
     if (window.GravityCollector) {
-      window.GravityCollector.identifySession('role', boardMembershipModel.role);
+      window.GravityCollector.identifySession('boardRole', boardMembershipModel.role);
     }
 
     return boardMembershipModel.ref;

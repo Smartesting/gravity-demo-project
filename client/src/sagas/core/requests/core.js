@@ -1,5 +1,5 @@
 import { call } from 'redux-saga/effects';
-
+import { ampli } from '../../../ampli';
 import { fetchBoardByCurrentPath } from './boards';
 import request from '../request';
 import api from '../../../api';
@@ -8,6 +8,14 @@ import mergeRecords from '../../../utils/merge-records';
 export function* fetchCore() {
   const { item: user } = yield call(request, api.getCurrentUser, true);
   const { items: users1 } = yield call(request, api.getUsers);
+
+  ampli.identify(user?.id, {
+    isProjectAdmin: user?.isAdmin,
+  });
+
+  if (window.GravityCollector) {
+    window.GravityCollector.identifySession('isProjectAdmin', user?.isAdmin);
+  }
 
   const {
     items: projects1,

@@ -17,6 +17,7 @@ const POSITION_GAP = 65535;
 const ACTIVITIES_LIMIT = 50;
 
 const GRAVITY_AUTH_KEY = process.env.REACT_APP_GRAVITY_PROD_KEY || ' ';
+const AMPLITUDE_API_KEY = process.env.AMPLITUDE_API_KEY || ' ';
 
 export default {
   VERSION,
@@ -29,4 +30,5 @@ export default {
   POSITION_GAP,
   ACTIVITIES_LIMIT,
   GRAVITY_AUTH_KEY,
+  AMPLITUDE_API_KEY,
 };
