@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-
+import { ampli } from '../../../ampli';
 import { changeCoreLanguage, logout } from './core';
 import request from '../request';
 import selectors from '../../../selectors';
@@ -244,6 +244,7 @@ export function* addUserToCard(id, cardId) {
 export function* addUserToCurrentCard(id) {
   const { cardId } = yield select(selectors.selectPath);
 
+  ampli.addedMemberToCard();
   yield call(addUserToCard, id, cardId);
 }
 

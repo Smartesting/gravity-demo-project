@@ -1,4 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
+import { ampli } from '../../../ampli';
 
 import request from '../request';
 import selectors from '../../../selectors';
@@ -28,6 +29,8 @@ export function* createCommentActivity(cardId, data) {
     yield put(actions.createCommentActivity.failure(localId, error));
     return;
   }
+
+  ampli.commentedCard();
 
   yield put(actions.createCommentActivity.success(localId, activity));
 }

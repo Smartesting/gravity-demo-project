@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-
+import { ampli } from '../../../ampli';
 import { goToBoard, goToCard } from './router';
 import request from '../request';
 import selectors from '../../../selectors';
@@ -35,6 +35,7 @@ export function* createCard(listId, data, autoOpen) {
   }
 
   yield put(actions.createCard.success(localId, card));
+  ampli.createdCard();
 
   if (autoOpen) {
     yield call(goToCard, card.id);
@@ -72,6 +73,7 @@ export function* handleCardUpdate(card) {
 
 export function* moveCard(id, listId, index) {
   const position = yield select(selectors.selectNextCardPosition, listId, index, id);
+  ampli.movedACard();
 
   yield call(updateCard, id, {
     listId,

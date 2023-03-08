@@ -18,5 +18,5 @@ GravityCollector.init({
 });
 
 if (process.env.NODE_ENV === 'production') {
-  ampli.load({ environment: 'production' });
+  ampli.load({ environment: 'default' });
 }

@@ -7,7 +7,7 @@
  * To update run 'ampli pull frontend'
  *
  * Required dependencies: @amplitude/analytics-browser@^1.3.0
- * Tracking Plan Version: 0
+ * Tracking Plan Version: 1
  * Build: 1.0.0
  * Runtime: browser:javascript-ampli-v2
  *
@@ -17,7 +17,6 @@
  */
 
 import * as amplitude from '@amplitude/analytics-browser';
-import Config from '../constants/Config';
 
 /**
  * @typedef BaseEvent
@@ -62,7 +61,7 @@ import Config from '../constants/Config';
  * @property {string} default
  */
 export const ApiKey = {
-  production: Config.AMPLITUDE_API_KEY,
+  default: '94c2c58cc87948652ca627141c28261d'
 };
 
 /**
@@ -70,10 +69,10 @@ export const ApiKey = {
  */
 export const DefaultConfiguration = {
   plan: {
-    version: '0',
+    version: '1',
     branch: 'main',
     source: 'frontend',
-    versionId: 'ad90b094-37c6-499b-a185-8f9e7f5eb0d8'
+    versionId: 'f878d028-398e-4ff3-8ea9-0015aa677a99'
   },
   ...{
     ingestionMetadata: {
@@ -82,6 +81,30 @@ export const DefaultConfiguration = {
     }
   }
 };
+
+export class AddedMemberToCard {
+  constructor() {
+    this.event_type = 'Added member to card';
+  }
+}
+
+export class CommentedCard {
+  constructor() {
+    this.event_type = 'Commented card';
+  }
+}
+
+export class CreatedCard {
+  constructor() {
+    this.event_type = 'Created card';
+  }
+}
+
+export class MovedACard {
+  constructor() {
+    this.event_type = 'Moved a card';
+  }
+}
 
 /**
  * @typedef PromiseResult
@@ -197,6 +220,57 @@ export class Ampli {
     return this.amplitude.track(event, undefined, options);
   }
 
+  /**
+   * Added member to card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Added%20member%20to%20card)
+   *
+   * Owner: Joan RACENET
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  addedMemberToCard(options) {
+    return this.track(new AddedMemberToCard(), options);
+  }
+
+  /**
+   * Commented card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Commented%20card)
+   *
+   * Owner: Joan RACENET
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  commentedCard(options) {
+    return this.track(new CommentedCard(), options);
+  }
+
+  /**
+   * Created card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Created%20card)
+   *
+   * Owner: Joan RACENET
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  createdCard(options) {
+    return this.track(new CreatedCard(), options);
+  }
+
+  /**
+   * Moved a card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Moved%20a%20card)
+   *
+   * Owner: Joan RACENET
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  movedACard(options) {
+    return this.track(new MovedACard(), options);
+  }
 }
 
 export const ampli = new Ampli();
