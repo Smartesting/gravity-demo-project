@@ -31,15 +31,13 @@
     "server:start": "npm start --prefix server",
     "server:start:prod": "npm run start:prod --prefix server",
     "server:test": "npm test --prefix server",
-
     "build": "npm run client:build",
     "postbuild": "npm run copy",
-
     "copy": "cp -r ./client/build/. ./server/public; ls ./server/public; mv ./server/public/index.html ./server/views/index.ejs",
     "start": "npm run server:start:prod",
     "test": "npm run server:test && npm run client:test",
-
-    "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\""
+    "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\"",
+    "cypress:open": "cypress open"
   },
   "lint-staged": {
     "client/**/*.{js,jsx}": [
@@ -72,6 +70,7 @@
     "lint-staged": "^13.0.3"
   },
   "devDependencies": {
+    "cypress": "^12.7.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
