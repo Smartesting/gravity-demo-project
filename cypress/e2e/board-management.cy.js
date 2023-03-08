@@ -1,5 +1,5 @@
-describe('template spec', () => {
+describe('Board management', () => {
   it('passes', () => {
-    cy.visit('https://example.cypress.io')
+    cy.visit('/')
   })
 })
