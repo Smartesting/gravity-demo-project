@@ -62,7 +62,7 @@ import Config from '../constants/Config';
  * @property {string} default
  */
 export const ApiKey = {
-  default: Config.AMPLITUDE_API_KEY,
+  production: Config.AMPLITUDE_API_KEY,
 };
 
 /**

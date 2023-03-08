@@ -25,6 +25,7 @@
       "browser": true,
       "jest": true
     },
+    "ignorePatterns": ["**/locales/**/*.js"],
     "parser": "@babel/eslint-parser",
     "parserOptions": {
       "babelOptions": {
