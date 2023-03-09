@@ -29,5 +29,10 @@ module.exports = {
   seeds: {
     directory: path.join(__dirname, 'seeds'),
   },
+  pool: {
+    min: 0,
+    max: 10,
+    idleTimeoutMillis: 30000,
+  },
   wrapIdentifier: (value, origImpl) => origImpl(_.snakeCase(value)),
 };
