@@ -23,7 +23,6 @@ jobs:
         with:
           compose-file: "./docker-compose-dev.yml"
           down-flags: "--volumes"
-      - run: npm start
 
   cypress-run:
     runs-on: ubuntu-latest
@@ -31,3 +30,5 @@ jobs:
     steps:
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        with:
+          start: npm start
