@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - run: npm ci
-      - run: npm build
+      - run: npm run build
       - name: Docker Compose Action
         uses: isbang/compose-action@v1.4.1
         with:
@@ -27,6 +27,7 @@ jobs:
 
   cypress-run:
     runs-on: ubuntu-latest
+    needs: build-app
     steps:
       - name: Cypress run
         uses: cypress-io/github-action@v5
