@@ -11,6 +11,12 @@ services:
     environment:
       - POSTGRES_DB=planka
       - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-q", "-d", "planka", "-U", "Postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 
 volumes:
   db-data:
