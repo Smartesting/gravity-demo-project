@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-app
     steps:
+      - run: ls
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
