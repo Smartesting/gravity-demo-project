@@ -11,17 +11,19 @@ env:
 
 jobs:
   build-app:
-  - name: Checkout
-    uses: actions/checkout@v3
-  - run: npm ci
-  - run: npm build
-  - name: Docker Compose Action
-    uses: isbang/compose-action@v1.4.1
-     with:
-      compose-file: "./docker/docker-compose-dev.yml"
-      down-flags: "--volumes"
-  - run: npm run server:db:init
-  - run: npm start
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm build
+      - name: Docker Compose Action
+        uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./docker/docker-compose-dev.yml"
+          down-flags: "--volumes"
+      - run: npm run server:db:init
+      - run: npm start
 
   cypress-run:
     runs-on: ubuntu-latest
