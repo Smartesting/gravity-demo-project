@@ -27,5 +27,5 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
-          start: npm start
+          start: npm start & wait-on http://localhost:3000
 

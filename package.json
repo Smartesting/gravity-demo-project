@@ -68,7 +68,8 @@
   "dependencies": {
     "concurrently": "^7.6.0",
     "husky": "^8.0.2",
-    "lint-staged": "^13.0.3"
+    "lint-staged": "^13.0.3",
+    "wait-on": "^7.0.1"
   },
   "devDependencies": {
     "cypress": "^12.7.0",
