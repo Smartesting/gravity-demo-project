@@ -23,15 +23,6 @@ const url = require('url');
 
 const { customLogger } = require('../../utils/logger');
 
-let sslConfig = {
-  sslmode: 'require',
-  rejectUnauthorized: false,
-};
-
-if (process.env.NO_SSL) {
-  sslConfig = false;
-}
-
 module.exports = {
   /**
    *
@@ -72,7 +63,10 @@ module.exports = {
        * https://sailsjs.com/config/datastores
        *
        */
-      ssl: sslConfig,
+      ssl: {
+        sslmode: 'require',
+        rejectUnauthorized: false,
+      },
     },
   },
 
@@ -312,7 +306,7 @@ module.exports = {
    *
    */
 
-  // port: 80,
+  port: 80,
 
   /**
    *

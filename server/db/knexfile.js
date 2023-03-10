@@ -18,7 +18,6 @@ function buildSSLConfig() {
 
 module.exports = {
   client: 'pg',
-  debug: true,
   connection: {
     connectionString: process.env.DATABASE_URL,
     ssl: buildSSLConfig(),
@@ -29,11 +28,6 @@ module.exports = {
   },
   seeds: {
     directory: path.join(__dirname, 'seeds'),
-  },
-  pool: {
-    min: 0,
-    max: 10,
-    idleTimeoutMillis: 30000,
   },
   wrapIdentifier: (value, origImpl) => origImpl(_.snakeCase(value)),
 };

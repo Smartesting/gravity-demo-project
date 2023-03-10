@@ -37,8 +37,7 @@
     "start": "npm run server:start:prod",
     "test": "npm run server:test && npm run client:test",
     "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\"",
-    "cypress:open": "cypress open",
-    "cypress:run": "./node_modules/cypress/bin/cypress run"
+    "cypress:open": "cypress open"
   },
   "lint-staged": {
     "client/**/*.{js,jsx}": [
@@ -68,8 +67,7 @@
   "dependencies": {
     "concurrently": "^7.6.0",
     "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
-    "wait-on": "^7.0.1"
+    "lint-staged": "^13.0.3"
   },
   "devDependencies": {
     "cypress": "^12.7.0",
