@@ -1,0 +1,28 @@
+name: Cypress - E2E Tests
+
+on: [push]
+
+
+env:
+  BASE_URL: http://localhost:80
+  DATABASE_URL: postgresql://postgres@localhost/planka
+  SECRET_KEY: e619c8b441ff2bf0f39cf89ca4b1879f82947415957e4016646bc43241bb4fad357e4d82309968135776e6a469a8ff1423210546209a4cbd83c2da8e3aa25eaf
+  TZ: UTC
+  NO_SSL: true
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm run build
+      - name: Docker Compose Action
+        uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./docker-compose-dev.yml"
+          down-flags: "--volumes"
+      - run: npm start
+      - name: Cypress run
+        run: npm 
