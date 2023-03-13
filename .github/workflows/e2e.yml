@@ -9,8 +9,7 @@ env:
   SECRET_KEY: e619c8b441ff2bf0f39cf89ca4b1879f82947415957e4016646bc43241bb4fad357e4d82309968135776e6a469a8ff1423210546209a4cbd83c2da8e3aa25eaf
   TZ: UTC
   NO_SSL: true
-  NODE_ENV: production
-
+  
 jobs:
   build-app:
     runs-on: ubuntu-latest
