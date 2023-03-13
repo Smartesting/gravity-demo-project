@@ -9,7 +9,7 @@ env:
   SECRET_KEY: e619c8b441ff2bf0f39cf89ca4b1879f82947415957e4016646bc43241bb4fad357e4d82309968135776e6a469a8ff1423210546209a4cbd83c2da8e3aa25eaf
   TZ: UTC
   NO_SSL: true
-  REACT_APP_GRAVITY_PROD_KEY: 42c242c6-dbb3-4446-95be-ac60b1f62b84
+  NODE_ENV: production
 
 jobs:
   build-app:
@@ -24,13 +24,10 @@ jobs:
         with:
           compose-file: "./docker-compose-dev.yml"
           down-flags: "--volumes"
-      - run: echo ::set-output name=gravity_key::$REACT_APP_GRAVITY_PROD_KEY
-        id: setgravity
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
           install: false
-          env: REACT_APP_GRAVITY_PROD_KEY=42c242c6-dbb3-4446-95be-ac60b1f62b84
           browser: chrome
           start: npm start
 
