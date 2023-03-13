@@ -13,10 +13,11 @@ import './i18n';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(Root, { store, history }));
 
-if (process.env.NODE_ENV === 'production') {
-  GravityCollector.init({
-    authKey: Config.GRAVITY_AUTH_KEY,
-  });
+GravityCollector.init({
+  authKey: Config.GRAVITY_AUTH_KEY,
+  requestInterval: 0,
+});
 
+if (process.env.NODE_ENV === 'production') {
   ampli.load({ environment: 'default' });
 }
