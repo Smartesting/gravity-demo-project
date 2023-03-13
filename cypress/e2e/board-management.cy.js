@@ -6,3 +6,4 @@ describe('Board management', () => {
     cy.get('button').click();
   })
 })
+ 

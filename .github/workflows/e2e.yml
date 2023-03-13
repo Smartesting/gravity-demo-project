@@ -28,5 +28,5 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
-          start: npm start
           browser: chrome
+          start: REACT_APP_GRAVITY_PROD_KEY=$REACT_APP_GRAVITY_PROD_KEY npm start
