@@ -31,4 +31,4 @@ jobs:
         with:
           install: false
           browser: chrome
-          start: REACT_APP_GRAVITY_PROD_KEY=${{ steps.setgravity.outputs.gravity_key }} npm start
+          start: set REACT_APP_GRAVITY_PROD_KEY=${{ steps.setgravity.outputs.gravity_key }}; npm start
