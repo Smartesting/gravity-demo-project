@@ -16,9 +16,10 @@ const ACCESS_TOKEN_VERSION = '1';
 const POSITION_GAP = 65535;
 const ACTIVITIES_LIMIT = 50;
 
-const GRAVITY_AUTH_KEY =
-  process.env.REACT_APP_GRAVITY_PROD_KEY || '42c242c6-dbb3-4446-95be-ac60b1f62b84';
+const GRAVITY_AUTH_KEY = process.env.REACT_APP_GRAVITY_PROD_KEY || ' ';
 const AMPLITUDE_API_KEY = process.env.REACT_APP_AMPLITUDE_API_KEY || ' ';
+
+const CI_ENV = process.env.REACT_APP_CI_ENV;
 
 export default {
   VERSION,
@@ -32,4 +33,5 @@ export default {
   ACTIVITIES_LIMIT,
   GRAVITY_AUTH_KEY,
   AMPLITUDE_API_KEY,
+  CI_ENV,
 };
