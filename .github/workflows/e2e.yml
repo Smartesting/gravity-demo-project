@@ -24,9 +24,11 @@ jobs:
         with:
           compose-file: "./docker-compose-dev.yml"
           down-flags: "--volumes"
+      - run: echo ::set-output name=gravity_key::$REACT_APP_GRAVITY_PROD_KEY
+        id: setgravity
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
           install: false
           browser: chrome
-          start: REACT_APP_GRAVITY_PROD_KEY=$REACT_APP_GRAVITY_PROD_KEY npm start
+          start: REACT_APP_GRAVITY_PROD_KEY=${{ steps.setgravity.outputs.gravity_key }} npm start
