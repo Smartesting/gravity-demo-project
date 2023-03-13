@@ -31,5 +31,5 @@ jobs:
           install: false
           browser: chrome
           start: npm run start:ci
-          env: NODE_ENV=production
+          env: NODE_ENV=production,REACT_APP_GRAVITY_BUILD_ID=${{github.run_number}}
 
