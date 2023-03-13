@@ -30,5 +30,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
+          env: REACT_APP_GRAVITY_PROD_KEY=42c242c6-dbb3-4446-95be-ac60b1f62b84
           browser: chrome
-          start: set REACT_APP_GRAVITY_PROD_KEY=${{ steps.setgravity.outputs.gravity_key }}; npm start
+          start: npm start
+
