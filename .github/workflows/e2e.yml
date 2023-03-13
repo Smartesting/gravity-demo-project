@@ -30,6 +30,6 @@ jobs:
         with:
           install: false
           browser: chrome
-          start: npm run start:test
+          start: npm run start:ci
           env: NODE_ENV=production
 
