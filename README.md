@@ -8,12 +8,11 @@
 
 [**Client demo**](https://plankanban.github.io/planka) (without server features).
 
-## GRAVITY Deployment
-
-- Install and setup Scalingo CLI
-- Add scalingo remote repository
-- `git push scalingo main:deploy`
-- TODO: move build from client into server /public folder (maybe possible with react-app-rewired or with ncp js)
+## Gravity-specifics
+- Project is deployed on https://gravity-planka.osc-fr1.scalingo.io/
+- Usage (prod + test) data are sent in the Planka domain (https://app.gravity-testing.com/domains/289)
+- `deploy` branch is for... deployment (keep `main`safe for rebase from original forked repository purpose)
+- When pushing, Cypress tests are run and the app is automatically deployed if build is green
 
 ## Features
 
