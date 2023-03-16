@@ -25,7 +25,9 @@
       "browser": true,
       "jest": true
     },
-    "ignorePatterns": ["**/locales/**/*.js"],
+    "ignorePatterns": [
+      "**/locales/**/*.js"
+    ],
     "parser": "@babel/eslint-parser",
     "parserOptions": {
       "babelOptions": {
@@ -56,7 +58,7 @@
   "dependencies": {
     "@amplitude/analytics-browser": "^1.9.1",
     "@juggle/resize-observer": "^3.4.0",
-    "@smartesting/gravity-data-collector": "^3.4.2",
+    "@smartesting/gravity-data-collector": "file:../../gravity-data-collector",
     "babel-preset-airbnb": "^5.0.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",

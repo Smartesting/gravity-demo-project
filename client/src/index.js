@@ -15,6 +15,8 @@ root.render(React.createElement(Root, { store, history }));
 
 const gravityConfig = {
   authKey: Config.GRAVITY_AUTH_KEY,
+  cypressEnv: true,
+  requestInterval: 0,
 };
 
 if (Config.CI_ENV) {
