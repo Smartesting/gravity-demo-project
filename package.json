@@ -39,8 +39,8 @@
     "start:ci": "npm run server:start:ci",
     "test": "npm run server:test && npm run client:test",
     "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\"",
-    "cypress:open": "cypress open",
-    "cypress:run": "./node_modules/cypress/bin/cypress run"
+    "cypress:open": "DATABASE_URL=postgres://postgres@localhost:5432/planka cypress open",
+    "cypress:run": "DATABASE_URL=postgres://postgres@localhost:5432/planka ./node_modules/cypress/bin/cypress run"
   },
   "lint-staged": {
     "client/**/*.{js,jsx}": [
