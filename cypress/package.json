@@ -1,0 +1,29 @@
+{
+  "name": "planka",
+  "version": "1.11.0",
+  "private": true,
+  "homepage": "https://plankanban.github.io/planka",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plankanban/planka.git"
+  },
+  "license": "AGPL-3.0",
+  "author": "Maksim Eltyshev",
+  "engines": {
+    "node": "16.15.0",
+    "npm": "8"
+  },
+  "scripts": {
+    "cypress:open": "DATABASE_URL=postgres://postgres@localhost:5432/planka cypress open",
+    "cypress:run": "DATABASE_URL=postgres://postgres@localhost:5432/planka ./node_modules/cypress/bin/cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^12.7.0",
+    "knex": "^2.3.0",
+    "planka-server": "file:../server",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "pg": "^8.11.0"
+  }
+}

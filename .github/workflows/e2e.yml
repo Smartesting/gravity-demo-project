@@ -12,7 +12,7 @@ env:
   REACT_APP_CI_ENV: true
   REACT_APP_GRAVITY_PROD_KEY: 42c242c6-dbb3-4446-95be-ac60b1f62b84
   REACT_APP_GRAVITY_BUILD_ID: ${{github.run_number}}
-  
+
 jobs:
   build-app:
     runs-on: ubuntu-latest
@@ -29,9 +29,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          install: false
           browser: chrome
           start: npm run start:ci
           env: NODE_ENV=production
-          
-
+          project: cypress

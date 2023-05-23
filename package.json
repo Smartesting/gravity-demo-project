@@ -38,9 +38,7 @@
     "start": "npm run server:start:prod",
     "start:ci": "npm run server:start:ci",
     "test": "npm run server:test && npm run client:test",
-    "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\"",
-    "cypress:open": "DATABASE_URL=postgres://postgres@localhost:5432/planka cypress open",
-    "cypress:run": "DATABASE_URL=postgres://postgres@localhost:5432/planka ./node_modules/cypress/bin/cypress run"
+    "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\""
   },
   "lint-staged": {
     "client/**/*.{js,jsx}": [
@@ -69,17 +67,13 @@
   },
   "dependencies": {
     "concurrently": "^7.6.0",
-    "dotenv": "^16.0.3",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.3"
   },
   "devDependencies": {
-    "cypress": "^12.7.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "knex": "^2.3.0",
-    "planka-server": "file:./server",
     "prettier": "^2.7.1"
   }
 }
