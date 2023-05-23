@@ -32,4 +32,4 @@ jobs:
           browser: chrome
           start: npm run start:ci
           env: NODE_ENV=production
-          project: ./cypress
+          working-directory: ./cypress
