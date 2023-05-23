@@ -14,6 +14,7 @@
     "npm": "8"
   },
   "scripts": {
+    "start:ci": "cd .. && npm run server:start:ci",
     "cypress:open": "DATABASE_URL=postgres://postgres@localhost:5432/planka cypress open",
     "cypress:run": "DATABASE_URL=postgres://postgres@localhost:5432/planka ./node_modules/cypress/bin/cypress run"
   },
