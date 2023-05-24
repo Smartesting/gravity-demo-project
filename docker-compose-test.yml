@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  install-dependencies:
+    image: andreysenov/node-gyp
+    container_name: install-dependencies
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: npm install
+
+  build:
+    image: andreysenov/node-gyp
+    container_name: build
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: npm run build
+    depends_on:
+      install-dependencies:
+        condition: service_completed_successfully
+
+  postgres:
+    image: postgres:alpine
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=planka
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  start-planka:
+    image: node:16-alpine
+    container_name: start-planka
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: npm run start:ci
+    environment:
+      PORT: 3000
+      BASE_URL: http://localhost:3000
+      NO_SSL: 1
+      DATABASE_URL: postgresql://postgres@postgres/planka
+    ports:
+      - 3000:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      build:
+        condition: service_completed_successfully
+
+volumes:
+  db-data:
