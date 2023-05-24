@@ -2,7 +2,7 @@ version: '3'
 
 services:
   install-dependencies:
-    image: andreysenov/node-gyp
+    image: node:16-alpine
     container_name: install-dependencies
     volumes:
       - .:/app
@@ -10,7 +10,7 @@ services:
     entrypoint: npm install
 
   build:
-    image: andreysenov/node-gyp
+    image: node:16-alpine
     container_name: build
     volumes:
       - .:/app
@@ -31,7 +31,7 @@ services:
       - POSTGRES_DB=planka
       - POSTGRES_HOST_AUTH_METHOD=trust
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      test: [ 'CMD-SHELL', 'pg_isready -U postgres' ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -42,14 +42,12 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    entrypoint: npm run start:dev
+    entrypoint: npm run start:ci
     environment:
       PORT: 3000
       BASE_URL: http://localhost:3000
       NO_SSL: 1
       DATABASE_URL: postgresql://postgres@postgres/planka
-      # Uncomment the following line and use your own key
-      # REACT_APP_GRAVITY_AUTH_KEY: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
     ports:
       - 3000:3000
     depends_on:
@@ -57,6 +55,7 @@ services:
         condition: service_healthy
       build:
         condition: service_completed_successfully
+    env_file: gravity.env
 
 volumes:
   db-data:
