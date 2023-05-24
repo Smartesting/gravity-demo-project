@@ -36,18 +36,20 @@ services:
       timeout: 5s
       retries: 5
 
-  start-planka:
+  planka:
     image: node:16-alpine
     container_name: start-planka
     volumes:
       - .:/app
     working_dir: /app
-    entrypoint: npm run start:ci
+    entrypoint: npm run start:dev
     environment:
       PORT: 3000
       BASE_URL: http://localhost:3000
       NO_SSL: 1
       DATABASE_URL: postgresql://postgres@postgres/planka
+      # Uncomment the following line and use your own key
+      # REACT_APP_GRAVITY_AUTH_KEY: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
     ports:
       - 3000:3000
     depends_on:
