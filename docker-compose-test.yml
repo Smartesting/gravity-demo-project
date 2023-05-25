@@ -16,9 +16,8 @@ services:
       - .:/app
     working_dir: /app
     entrypoint: npm run build
-    environment:
-      REACT_APP_GRAVITY_AUTH_KEY: 8f64cc56-deb3-4246-877b-b6056aad2a85
-      REACT_APP_GRAVITY_BUILD_ID: 2
+    env_file:
+      - ./gravity.env
     depends_on:
       install-dependencies:
         condition: service_completed_successfully
@@ -78,6 +77,9 @@ services:
       BASE_URL: http://localhost:3000
       NO_SSL: 1
       DATABASE_URL: postgresql://postgres@postgres/planka
+      SECRET_KEY: notsecretkey
+    env_file:
+      - ./gravity.env
     ports:
       - 3000:3000
     depends_on:
