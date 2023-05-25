@@ -18,7 +18,7 @@ services:
     entrypoint: npm run build
     environment:
       REACT_APP_GRAVITY_AUTH_KEY: 8f64cc56-deb3-4246-877b-b6056aad2a85
-      REACT_APP_GRAVITY_BUILD_ID: 1
+      REACT_APP_GRAVITY_BUILD_ID: 2
     depends_on:
       install-dependencies:
         condition: service_completed_successfully
@@ -78,8 +78,6 @@ services:
       BASE_URL: http://localhost:3000
       NO_SSL: 1
       DATABASE_URL: postgresql://postgres@postgres/planka
-      REACT_APP_GRAVITY_AUTH_KEY: 8f64cc56-deb3-4246-877b-b6056aad2a85
-      REACT_APP_GRAVITY_BUILD_ID: 1
     ports:
       - 3000:3000
     depends_on:
