@@ -30,6 +30,6 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           browser: chrome
-          start: npm run start:ci
+          start: npm run migrate-and-start:ci
           env: NODE_ENV=production
           working-directory: ./cypress
