@@ -37,7 +37,6 @@
     "copy": "cp -r ./client/build/. ./server/public; ls ./server/public; mv ./server/public/index.html ./server/views/index.ejs",
     "start": "npm run server:start:prod",
     "start:ci": "npm run server:start:ci",
-    "migrate-and-start:ci": "npm run server:db:migrate && start:ci",
     "test": "npm run server:test && npm run client:test",
     "start:dev": "concurrently -n server,client \"npm run server:start\" \"npm run client:start\""
   },
