@@ -11,6 +11,35 @@ services:
     environment:
       - POSTGRES_DB=planka
       - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U postgres' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  migrate-db:
+    image: node:16-alpine
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: npm run server:db:migrate
+    environment:
+      DATABASE_URL: postgresql://postgres@postgres/planka
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  seed-db:
+    image: node:16-alpine
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: npm run server:db:seed
+    environment:
+      DATABASE_URL: postgresql://postgres@postgres/planka
+    depends_on:
+      migrate-db:
+        condition: service_completed_successfully
 
 volumes:
   db-data:
