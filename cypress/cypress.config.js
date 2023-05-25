@@ -3,7 +3,7 @@ const { resetDB } = require("./cypress/support/resetdb");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     setupNodeEvents(on, config) {
       on('task', {
         'db:reset': async () => {

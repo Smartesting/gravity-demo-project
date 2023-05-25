@@ -1,18 +1,23 @@
-const initKnex = require('knex')
-const knexfile = require('planka-server/db/knexfile')
-const seed = require('planka-server/db/seeds/default')
+const { Client } = require('pg');
+const bcrypt = require('bcrypt');
 
 async function resetDB() {
-  const knex = initKnex(knexfile)
+  const client = new Client(process.env.DATABASE_URL);
+  const email = 'demo@demo.demo'
+  const password = bcrypt.hashSync('demo', 10)
+  const isAdmin = true
+  const name = 'Demo Demo'
+  const username = 'demo'
+  const subscribeToOwnCards = false
+  const createdAt = new Date()
+  const updatedAt = new Date()
 
-  // Log all SQL queries executed
-  // knex.on('query', function (queryData) {
-  //   console.log(queryData.sql)
-  // })
-
-  await knex.migrate.rollback(undefined, true)
-  await knex.migrate.latest()
-  await knex.seed.run()
+  await client.connect();
+  const drop = await client.query('DELETE FROM user_account WHERE email=$1', [email])
+  console.log({ drop })
+  const addUser = await client.query('insert into "user_account" ("created_at", "email", "is_admin", "name", "password", "subscribe_to_own_cards", "updated_at", "username") values ($1, $2, $3, $4, $5, $6, $7, $8)',
+    [createdAt, email, isAdmin, name, password, subscribeToOwnCards, updatedAt, username])
+  console.log({ addUser })
 
   console.log('DB reset')
 }

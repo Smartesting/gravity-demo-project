@@ -16,6 +16,9 @@ services:
       - .:/app
     working_dir: /app
     entrypoint: npm run build
+    environment:
+      REACT_APP_GRAVITY_AUTH_KEY: 8f64cc56-deb3-4246-877b-b6056aad2a85
+      REACT_APP_GRAVITY_BUILD_ID: 1
     depends_on:
       install-dependencies:
         condition: service_completed_successfully
@@ -23,8 +26,6 @@ services:
   postgres:
     image: postgres:14-alpine
     restart: unless-stopped
-    volumes:
-      - db-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
@@ -35,6 +36,35 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  migrate-db:
+    image: node:16-alpine
+    container_name: migrate-db
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: npm run server:db:migrate
+    environment:
+      DATABASE_URL: postgresql://postgres@postgres/planka
+    depends_on:
+      postgres:
+        condition: service_healthy
+      build:
+        condition: service_completed_successfully
+
+  # Note: this might fail at second startup...
+  seed-db:
+    image: node:16-alpine
+    container_name: seed-db
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: npm run server:db:seed
+    environment:
+      DATABASE_URL: postgresql://postgres@postgres/planka
+    depends_on:
+      migrate-db:
+        condition: service_completed_successfully
 
   planka:
     image: node:16-alpine
@@ -48,14 +78,13 @@ services:
       BASE_URL: http://localhost:3000
       NO_SSL: 1
       DATABASE_URL: postgresql://postgres@postgres/planka
+      REACT_APP_GRAVITY_AUTH_KEY: 8f64cc56-deb3-4246-877b-b6056aad2a85
+      REACT_APP_GRAVITY_BUILD_ID: 1
     ports:
       - 3000:3000
     depends_on:
-      postgres:
-        condition: service_healthy
-      build:
+      migrate-db:
         condition: service_completed_successfully
-    env_file: gravity.env
 
 volumes:
   db-data:
