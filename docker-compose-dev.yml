@@ -16,18 +16,5 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
-  migrate-db:
-    image: node:16-alpine
-    volumes:
-      - .:/app
-    working_dir: /app
-    entrypoint: npm run server:db:migrate
-    environment:
-      DATABASE_URL: postgresql://postgres@postgres/planka
-    depends_on:
-      postgres:
-        condition: service_healthy
-
 volumes:
   db-data:
