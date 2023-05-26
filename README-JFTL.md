@@ -32,7 +32,7 @@ npm run cypress:open
 
 ## Updating the build ID
 
-Stop docker compose then edit the file [gravity.env](./gravity.env). Start docker compose again:
+Stop docker compose by typing `Ctrl + C` then edit the file [gravity.env](./gravity.env) with a new build ID and restart docker compose:
 
 ```shell
 docker compose -f docker-compose-test.yml up
