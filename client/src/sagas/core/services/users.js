@@ -268,7 +268,7 @@ export function* removeUserFromCard(id, cardId) {
 
 export function* removeUserFromCurrentCard(id) {
   const { cardId } = yield select(selectors.selectPath);
-
+  ampli.removedMemberFromCard();
   yield call(removeUserFromCard, id, cardId);
 }
 

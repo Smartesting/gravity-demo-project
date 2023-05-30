@@ -8,7 +8,7 @@
   "Language": "JavaScript",
   "SDK": "@amplitude/analytics-browser@^1.0",
   "Branch": "main",
-  "Version": "1.0.0",
-  "VersionId": "f878d028-398e-4ff3-8ea9-0015aa677a99",
+  "Version": "2.0.0",
+  "VersionId": "3e1270c0-30fa-4ab1-a785-6a6ce943c1bd",
   "Path": "./src/ampli"
 }

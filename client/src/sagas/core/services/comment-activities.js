@@ -65,7 +65,7 @@ export function* deleteCommentActivity(id) {
     yield put(actions.deleteCommentActivity.failure(id, error));
     return;
   }
-
+  ampli.removedCommentFromCard();
   yield put(actions.deleteCommentActivity.success(activity));
 }
 

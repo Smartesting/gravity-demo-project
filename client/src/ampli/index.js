@@ -7,7 +7,7 @@
  * To update run 'ampli pull frontend'
  *
  * Required dependencies: @amplitude/analytics-browser@^1.3.0
- * Tracking Plan Version: 1
+ * Tracking Plan Version: 2
  * Build: 1.0.0
  * Runtime: browser:javascript-ampli-v2
  *
@@ -69,10 +69,10 @@ export const ApiKey = {
  */
 export const DefaultConfiguration = {
   plan: {
-    version: '1',
+    version: '2',
     branch: 'main',
     source: 'frontend',
-    versionId: 'f878d028-398e-4ff3-8ea9-0015aa677a99'
+    versionId: '3e1270c0-30fa-4ab1-a785-6a6ce943c1bd'
   },
   ...{
     ingestionMetadata: {
@@ -81,6 +81,12 @@ export const DefaultConfiguration = {
     }
   }
 };
+
+export class AddedLabelToCard {
+  constructor() {
+    this.event_type = 'Added label to card';
+  }
+}
 
 export class AddedMemberToCard {
   constructor() {
@@ -94,15 +100,75 @@ export class CommentedCard {
   }
 }
 
+export class CreatedBoard {
+  constructor() {
+    this.event_type = 'Created board';
+  }
+}
+
 export class CreatedCard {
   constructor() {
     this.event_type = 'Created card';
   }
 }
 
+export class CreatedList {
+  constructor() {
+    this.event_type = 'Created list';
+  }
+}
+
+export class CreatedProject {
+  constructor() {
+    this.event_type = 'Created project';
+  }
+}
+
 export class MovedACard {
   constructor() {
     this.event_type = 'Moved a card';
+  }
+}
+
+export class RemovedBoard {
+  constructor() {
+    this.event_type = 'Removed board';
+  }
+}
+
+export class RemovedCard {
+  constructor() {
+    this.event_type = 'Removed card';
+  }
+}
+
+export class RemovedCommentFromCard {
+  constructor() {
+    this.event_type = 'Removed comment from card';
+  }
+}
+
+export class RemovedLabelFromCard {
+  constructor() {
+    this.event_type = 'Removed label from card';
+  }
+}
+
+export class RemovedList {
+  constructor() {
+    this.event_type = 'Removed list';
+  }
+}
+
+export class RemovedMemberFromCard {
+  constructor() {
+    this.event_type = 'Removed member from card';
+  }
+}
+
+export class RemovedProject {
+  constructor() {
+    this.event_type = 'Removed project';
   }
 }
 
@@ -221,6 +287,19 @@ export class Ampli {
   }
 
   /**
+   * Added label to card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Added%20label%20to%20card)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  addedLabelToCard(options) {
+    return this.track(new AddedLabelToCard(), options);
+  }
+
+  /**
    * Added member to card
    *
    * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Added%20member%20to%20card)
@@ -247,6 +326,19 @@ export class Ampli {
   }
 
   /**
+   * Created board
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Created%20board)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  createdBoard(options) {
+    return this.track(new CreatedBoard(), options);
+  }
+
+  /**
    * Created card
    *
    * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Created%20card)
@@ -260,6 +352,32 @@ export class Ampli {
   }
 
   /**
+   * Created list
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Created%20list)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  createdList(options) {
+    return this.track(new CreatedList(), options);
+  }
+
+  /**
+   * Created project
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Created%20project)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  createdProject(options) {
+    return this.track(new CreatedProject(), options);
+  }
+
+  /**
    * Moved a card
    *
    * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Moved%20a%20card)
@@ -270,6 +388,97 @@ export class Ampli {
    */
   movedACard(options) {
     return this.track(new MovedACard(), options);
+  }
+
+  /**
+   * Removed board
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Removed%20board)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  removedBoard(options) {
+    return this.track(new RemovedBoard(), options);
+  }
+
+  /**
+   * Removed card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Removed%20card)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  removedCard(options) {
+    return this.track(new RemovedCard(), options);
+  }
+
+  /**
+   * Removed comment from card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Removed%20comment%20from%20card)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  removedCommentFromCard(options) {
+    return this.track(new RemovedCommentFromCard(), options);
+  }
+
+  /**
+   * Removed label from card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Removed%20label%20from%20card)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  removedLabelFromCard(options) {
+    return this.track(new RemovedLabelFromCard(), options);
+  }
+
+  /**
+   * Removed list
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Removed%20list)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  removedList(options) {
+    return this.track(new RemovedList(), options);
+  }
+
+  /**
+   * Removed member from card
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Removed%20member%20from%20card)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  removedMemberFromCard(options) {
+    return this.track(new RemovedMemberFromCard(), options);
+  }
+
+  /**
+   * Removed project
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/gravity-demo/Gravity%20Planka/events/main/latest/Removed%20project)
+   *
+   * Owner: Julien Botella
+   *
+   * @param {EventOptions} [options] Options for this track call.
+   */
+  removedProject(options) {
+    return this.track(new RemovedProject(), options);
   }
 }
 
