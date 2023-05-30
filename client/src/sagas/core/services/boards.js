@@ -6,6 +6,7 @@ import selectors from '../../../selectors';
 import actions from '../../../actions';
 import api from '../../../api';
 import { createLocalId } from '../../../utils/local-id';
+import { ampli } from '../../../ampli';
 
 export function* createBoard(projectId, { import: boardImport, ...data }) {
   const nextData = {
@@ -22,7 +23,6 @@ export function* createBoard(projectId, { import: boardImport, ...data }) {
       id: localId,
     }),
   );
-
   let board;
   let boardMemberships;
 
@@ -49,6 +49,7 @@ export function* createBoard(projectId, { import: boardImport, ...data }) {
   }
 
   yield put(actions.createBoard.success(localId, board, boardMemberships));
+  ampli.createdBoard();
   yield call(goToBoard, board.id);
 }
 
@@ -164,6 +165,7 @@ export function* deleteBoard(id) {
   }
 
   yield put(actions.deleteBoard.success(board));
+  ampli.removedBoard();
 }
 
 export function* handleBoardDelete(board) {

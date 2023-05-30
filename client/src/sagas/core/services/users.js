@@ -239,12 +239,12 @@ export function* addUserToCard(id, cardId) {
   }
 
   yield put(actions.addUserToCard.success(cardMembership));
+  ampli.addedMemberToCard();
 }
 
 export function* addUserToCurrentCard(id) {
   const { cardId } = yield select(selectors.selectPath);
 
-  ampli.addedMemberToCard();
   yield call(addUserToCard, id, cardId);
 }
 
@@ -264,11 +264,12 @@ export function* removeUserFromCard(id, cardId) {
   }
 
   yield put(actions.removeUserFromCard.success(cardMembership));
+  ampli.removedMemberFromCard();
 }
 
 export function* removeUserFromCurrentCard(id) {
   const { cardId } = yield select(selectors.selectPath);
-  ampli.removedMemberFromCard();
+
   yield call(removeUserFromCard, id, cardId);
 }
 

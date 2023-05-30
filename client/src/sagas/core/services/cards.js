@@ -116,7 +116,6 @@ export function* deleteCard(id) {
   }
 
   yield put(actions.deleteCard(id));
-  ampli.removedCard();
 
   let card;
   try {
@@ -127,6 +126,7 @@ export function* deleteCard(id) {
   }
 
   yield put(actions.deleteCard.success(card));
+  ampli.removedCard();
 }
 
 export function* deleteCurrentCard() {

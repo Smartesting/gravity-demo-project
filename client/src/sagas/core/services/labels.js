@@ -5,6 +5,7 @@ import selectors from '../../../selectors';
 import actions from '../../../actions';
 import api from '../../../api';
 import { createLocalId } from '../../../utils/local-id';
+import { ampli } from '../../../ampli';
 
 export function* createLabel(boardId, data) {
   const nextData = {
@@ -102,6 +103,7 @@ export function* addLabelToCard(id, cardId) {
   }
 
   yield put(actions.addLabelToCard.success(cardLabel));
+  ampli.addedLabelToCard();
 }
 
 export function* addLabelToCurrentCard(id) {
@@ -126,6 +128,7 @@ export function* removeLabelFromCard(id, cardId) {
   }
 
   yield put(actions.removeLabelFromCard.success(cardLabel));
+  ampli.removedLabelFromCard();
 }
 
 export function* removeLabelFromCurrentCard(id) {

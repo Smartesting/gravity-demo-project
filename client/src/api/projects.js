@@ -1,4 +1,3 @@
-import { ampli } from '../ampli';
 import http from './http';
 import socket from './socket';
 
@@ -6,10 +5,7 @@ import socket from './socket';
 
 const getProjects = (headers) => socket.get('/projects', undefined, headers);
 
-const createProject = (data, headers) => {
-  socket.post('/projects', data, headers);
-  ampli.createdProject();
-};
+const createProject = (data, headers) => socket.post('/projects', data, headers);
 
 const getProject = (id, headers) => socket.get(`/projects/${id}`, undefined, headers);
 
@@ -18,10 +14,7 @@ const updateProject = (id, data, headers) => socket.patch(`/projects/${id}`, dat
 const updateProjectBackgroundImage = (id, data, headers) =>
   http.post(`/projects/${id}/background-image`, data, headers);
 
-const deleteProject = (id, headers) => {
-  socket.delete(`/projects/${id}`, undefined, headers);
-  ampli.removedProject();
-};
+const deleteProject = (id, headers) => socket.delete(`/projects/${id}`, undefined, headers);
 
 export default {
   getProjects,

@@ -30,9 +30,8 @@ export function* createCommentActivity(cardId, data) {
     return;
   }
 
-  ampli.commentedCard();
-
   yield put(actions.createCommentActivity.success(localId, activity));
+  ampli.commentedCard();
 }
 
 export function* createCommentActivityInCurrentCard(data) {
@@ -65,8 +64,8 @@ export function* deleteCommentActivity(id) {
     yield put(actions.deleteCommentActivity.failure(id, error));
     return;
   }
-  ampli.removedCommentFromCard();
   yield put(actions.deleteCommentActivity.success(activity));
+  ampli.removedCommentFromCard();
 }
 
 export default {

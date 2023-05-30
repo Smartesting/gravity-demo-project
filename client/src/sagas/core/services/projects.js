@@ -5,6 +5,7 @@ import request from '../request';
 import selectors from '../../../selectors';
 import actions from '../../../actions';
 import api from '../../../api';
+import { ampli } from '../../../ampli';
 
 export function* createProject(data) {
   yield put(actions.createProject(data));
@@ -23,6 +24,7 @@ export function* createProject(data) {
   }
 
   yield put(actions.createProject.success(project, projectManagers));
+  ampli.createdProject();
   yield call(goToProject, project.id);
 }
 
@@ -107,6 +109,7 @@ export function* deleteProject(id) {
   }
 
   yield put(actions.deleteProject.success(project));
+  ampli.removedProject();
 }
 
 export function* deleteCurrentProject() {

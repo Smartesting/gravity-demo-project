@@ -5,6 +5,7 @@ import selectors from '../../../selectors';
 import actions from '../../../actions';
 import api from '../../../api';
 import { createLocalId } from '../../../utils/local-id';
+import { ampli } from '../../../ampli';
 
 export function* createList(boardId, data) {
   const nextData = {
@@ -31,6 +32,7 @@ export function* createList(boardId, data) {
   }
 
   yield put(actions.createList.success(localId, list));
+  ampli.createdList();
 }
 
 export function* createListInCurrentBoard(data) {
@@ -82,6 +84,7 @@ export function* deleteList(id) {
   }
 
   yield put(actions.deleteList.success(list));
+  ampli.removedList();
 }
 
 export function* handleListDelete(list) {
