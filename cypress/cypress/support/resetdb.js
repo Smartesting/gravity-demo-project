@@ -1,5 +1,5 @@
 const { Client } = require('pg');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 async function resetDB() {
   const client = new Client(process.env.DATABASE_URL || "postgres://postgres@localhost:5432/planka");
