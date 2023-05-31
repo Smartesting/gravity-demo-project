@@ -16,6 +16,7 @@ root.render(React.createElement(Root, { store, history }));
 const gravityConfig = {
   authKey: Config.GRAVITY_AUTH_KEY,
   recordRequestsFor: [window.location.origin],
+  requestInterval: 100,
 };
 
 if (Config.CI_ENV) {
