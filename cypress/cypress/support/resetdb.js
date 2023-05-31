@@ -2,7 +2,7 @@ const { Client } = require('pg');
 const bcrypt = require('bcrypt');
 
 async function resetDB() {
-  const client = new Client(process.env.DATABASE_URL);
+  const client = new Client(process.env.DATABASE_URL || "postgres://postgres@localhost:5432/planka");
   const email = 'demo@demo.demo'
   const password = bcrypt.hashSync('demo', 10)
   const isAdmin = true
