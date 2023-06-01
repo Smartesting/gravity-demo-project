@@ -10,7 +10,7 @@ env:
   TZ: UTC
   NO_SSL: true
   REACT_APP_CI_ENV: true
-  REACT_APP_GRAVITY_PROD_KEY: 42c242c6-dbb3-4446-95be-ac60b1f62b84
+  REACT_APP_GRAVITY_AUTH_KEY: 42c242c6-dbb3-4446-95be-ac60b1f62b84
   REACT_APP_GRAVITY_BUILD_ID: ${{github.run_number}}
 
 jobs:
