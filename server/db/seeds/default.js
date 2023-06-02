@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 exports.seed = (knex) => {
   const date = new Date().toUTCString();
