@@ -9,7 +9,7 @@ Cypress.Commands.add('createCard', (name) => {
   cy.log("Board page : create card")
   cy.get(".List_addCardButtonText__q66qy").click()
   cy.focused().type(name)
-  cy.focused().type("{Enter}")
+  cy.get(".CardAdd_submitButton__Kiyd5").click()
 })
 
 Cypress.Commands.add('openCard', () => {
