@@ -3,6 +3,7 @@ Cypress.Commands.add('createList', (name) => {
   cy.get(".Board_addListButtonText__o-FjU").click()
   cy.get("input").type("{selectall}").type(name)
   cy.get(".ListAdd_controls__A5EmO > .ui").click()
+  cy.contains(name).should("exist")
 })
 
 Cypress.Commands.add('createCard', (name) => {
@@ -10,6 +11,7 @@ Cypress.Commands.add('createCard', (name) => {
   cy.get(".List_addCardButtonText__q66qy").click()
   cy.focused().type(name)
   cy.get(".CardAdd_submitButton__Kiyd5").click()
+  cy.contains(name).should("exist")
 })
 
 Cypress.Commands.add('openCard', () => {
