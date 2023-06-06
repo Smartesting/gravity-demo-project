@@ -11,13 +11,20 @@ Cypress.Commands.add('addMemberToCard', () => {
   cy.get(".button > .close").click()
 })
 
-Cypress.Commands.add('addLabelToCard', (label) => {
-  cy.log("Card page : add label to card")
+Cypress.Commands.add('createLabel', (label) => {
+  cy.log("Card page : create label")
   cy.get(".four > :nth-child(1) > :nth-child(3)").click()
   cy.get(".input > input").type("{selectall}").type(label)
   cy.get(".content > .button").click()
   cy.get(".styles_backgroundBrightMoss__UhRRU").click()
   cy.get(".form > .positive").click()
+  cy.contains(label).should("exist")
+  cy.get(".Popup_closeButton__iKvZW > .close").click()
+})
+
+Cypress.Commands.add('addLabelToCard', () => {
+  cy.log("Card page : add label to card")
+  cy.get(".four > :nth-child(1) > :nth-child(3)").click()
   cy.get(".Item_name__RHn74").click()
   cy.get(".Popup_closeButton__iKvZW > .close").click()
 })
@@ -27,5 +34,6 @@ Cypress.Commands.add('addCommentToCard', (comment) => {
   cy.get(".CommentAdd_field__krf6C").click()
   cy.get(".CommentAdd_field__krf6C").type("{selectall}").type(comment)
   cy.get(".CommentAdd_controls__Xmoil > .ui").click()
+  cy.contains(comment).should("exist")
   cy.get(".close").click()
 })
