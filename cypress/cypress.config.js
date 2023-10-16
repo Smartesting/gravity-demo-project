@@ -2,6 +2,7 @@ const { defineConfig } = require("cypress");
 const { resetDB } = require("./cypress/support/resetdb");
 
 module.exports = defineConfig({
+  chromeWebSecurity: false,
   e2e: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     setupNodeEvents(on, config) {
