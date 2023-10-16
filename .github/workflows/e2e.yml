@@ -33,3 +33,4 @@ jobs:
           start: npm run start:ci
           env: NODE_ENV=production
           working-directory: ./cypress
+          record: true
