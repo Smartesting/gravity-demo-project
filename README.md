@@ -14,6 +14,15 @@
 - `deploy` branch is for... deployment (keep `main`safe for rebase from original forked repository purpose)
 - When pushing, Cypress tests are run and the app is automatically deployed if build is green
 
+## Gravity Data Collector validation
+- Set up the `REACT_APP_GRAVITY_AUTH_KEY` in the [env](./client/.env) file
+- Modify the collector dependency [here](./client/package.json) to point to the local instance in development (like this: `"@smartesting/gravity-data-collector": "file:../your-path/gravity-data-collector"`)
+- Start the development database with the following commmand: `docker compose -f docker-compose-dev.yml up`
+- Build the collector
+- Launch the following command: `npm i && npm run start:dev`
+
+That's all! Follow the two last steps when there are collector modifications.
+
 ## Features
 
 - Create projects, boards, lists, cards, labels and tasks
