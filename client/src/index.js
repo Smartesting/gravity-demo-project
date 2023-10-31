@@ -15,6 +15,7 @@ root.render(React.createElement(Root, { store, history }));
 
 const gravityConfig = {
   authKey: Config.GRAVITY_AUTH_KEY,
+  gravityServerUrl: Config.GRAVITY_SERVER_URL,
   recordRequestsFor: [window.location.origin],
 };
 
