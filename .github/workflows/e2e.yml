@@ -34,13 +34,10 @@ jobs:
           start: npm run start:ci
           env: NODE_ENV=production
           working-directory: ./cypress
-      - uses: actions/upload-artifact@v3
+      - name: Store Cypress videos
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
         with:
           name: cypress-screenshots
           path: ./cypress/cypress/screenshots
-          if-no-files-found: ignore
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cypress-videos
-          path: ./cypress/cypress/videos
           if-no-files-found: ignore
