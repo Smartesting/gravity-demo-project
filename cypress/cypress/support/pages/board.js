@@ -1,41 +1,62 @@
-Cypress.Commands.add('createList', (name) => {
-  cy.log("Board page : create list")
-  cy.get(".Board_addListButtonText__o-FjU").click()
-  cy.get("input").type("{selectall}").type(name)
-  cy.get(".ListAdd_controls__A5EmO > .ui").click()
-  cy.contains(name).should("exist")
-})
+Cypress.Commands.add("removeBoard", (name) => {
+	cy.get(".Boards_tabWrapper__lghjj")
+		.contains(oldName)
+		.parents()
+		.parents()
+		.find(".pencil")
+		.click();
+	cy.get(".content > :nth-child(2)").click();
+	cy.get(".content > .ui").click();
+});
 
-Cypress.Commands.add('createCard', (name) => {
-  cy.log("Board page : create card")
-  cy.get(".List_addCardButtonText__q66qy").click()
-  cy.focused().type(name)
-  cy.get(".CardAdd_submitButton__Kiyd5").click()
-  cy.contains(name).should("exist")
-})
+Cypress.Commands.add("addMemberToBoardAsEditor", (username) => {
+	cy.get("button[class*='Memberships']").click();
+	cy.get(".AddStep_users__nCk8V").contains(username).click();
+	cy.get(".ui.secondary > a:first-child").click();
+	cy.get("button[class$='button']").click();
+});
 
-Cypress.Commands.add('openCard', () => {
-  cy.log("Board page : open card")
-  cy.get(".Card_name__vpWb5").click()
-})
+Cypress.Commands.add("addMemberToBoardAsViewer", (username) => {
+	cy.get("button[class*='Memberships']").click();
+	cy.get(".AddStep_users__nCk8V").contains(username).click();
+	cy.get(".ui.secondary > a:nth-child(2)").click();
+	cy.get("button[class$='button']").click();
+});
 
-Cypress.Commands.add('removeList', () => {
-  cy.log("Board page : remove list")
-  cy.get(".List_header__kEEi1 > .ui").click()
-  cy.get(".ui > :nth-child(3)").click()
-  cy.get(".content > .ui").click()
-})
+Cypress.Commands.add("changeBoardRightsToViewer", (username) => {
+	cy.get(
+		"html > body > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div > div:nth-of-type(1)",
+	)
+		.contains(username)
+		.click();
+	cy.get("html > body > div:nth-of-type(6) > div > div > button:nth-of-type(2)").click();
+	cy.get(".ui.secondary > a:nth-child(2)").click();
+	cy.get("button[class$='button']").click();
+});
 
-Cypress.Commands.add('removeBoard', () => {
-  cy.log("Board page : remove board")
-  cy.get(".pencil").click()
-  cy.get(".content > :nth-child(2)").click()
-  cy.get(".content > .ui").click()
-})
+Cypress.Commands.add("changeBoardRightsToEditor", (username) => {
+	cy.get(
+		"html > body > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div > div:nth-of-type(1)",
+	)
+		.contains(username)
+		.click();
+	cy.get("html > body > div:nth-of-type(6) > div > div > button:nth-of-type(2)").click();
+	cy.get(".ui.secondary > a:first-child").click();
+	cy.get("button[class$='button']").click();
+});
 
-Cypress.Commands.add('removeProject', () => {
-  cy.log("Board page : remove project")
-  cy.get(".left.menu > :nth-child(2)").click()
-  cy.get(":nth-child(3) > .ui").click()
-  cy.get(".content > .ui").click()
-})
+Cypress.Commands.add("renameBoard", (oldName, newName) => {
+	cy.get(".Boards_tabWrapper__lghjj")
+		.contains(oldName)
+		.parents()
+		.parents()
+		.find(".pencil")
+		.click();
+	cy.get("input[name='name']").click();
+	cy.focused().type(newName);
+	cy.get(":nth-child(2) form button").click();
+});
+
+Cypress.Commands.add("navigateBoard", (boardName) => {
+	cy.get(".Boards_tabWrapper__lghjj").contains(boardName).click();
+});

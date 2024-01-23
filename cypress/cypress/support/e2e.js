@@ -14,9 +14,9 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
-import './pages/login'
-import './pages/home'
-import './pages/project'
-import './pages/board'
-import './pages/card'
+import "./pages/login";
+import "./pages/home";
+import "./pages/project";
+import "./pages/board";
+import "./pages/card";
+import "./pages/list";

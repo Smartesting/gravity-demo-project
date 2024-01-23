@@ -1,0 +1,19 @@
+{
+	"plugins": [
+		"cypress"
+	],
+	"extends": [
+		"plugin:cypress/recommended"
+	],
+	"rules": {
+		"prettier/prettier": [
+			"error",
+			{
+				"tabWidth": 4,
+				"useTabs": true,
+				"singleQuote": false,
+				"endOfLine": "auto"
+			}
+		]
+	}
+}

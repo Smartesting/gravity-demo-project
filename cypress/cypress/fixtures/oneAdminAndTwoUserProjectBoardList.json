@@ -1,0 +1,121 @@
+[
+	{
+		"table": "user_account",
+		"id": 1120425192351335456,
+		"email": "stephanie@mail.com",
+		"password": "$2a$10$ZLbacR0jdl7khZog9gKSs.AlncRltBPcSYNYf55BocJWMFyUdTgj6",
+		"is_admin": true,
+		"name": "Stephanie DEZ",
+		"username": "steph",
+		"phone": "0678594269",
+		"organization": "GLPI",
+		"subscribe_to_own_cards": false,
+		"created_at": "2023-11-23 16:24:51.000000",
+		"updated_at": "2023-11-23 16:25:51.000000",
+		"deleted_at": null,
+		"language": null,
+		"password_changed_at": null,
+		"avatar": null
+	},
+	{
+		"table": "user_account",
+		"id": 1120424574178034719,
+		"email": "victor@mail.com",
+		"password": "$2a$10$ORamBvw7Js3WeDIW.6jwuOyArAxIRojw8lxL2gRwCA34mMPZXmXgq",
+		"is_admin": false,
+		"name": "Victor YEUX",
+		"username": "victor",
+		"phone": "0645261345",
+		"organization": "GLPI",
+		"subscribe_to_own_cards": false,
+		"created_at": "2023-11-23 16:23:37.000000",
+		"updated_at": "2023-11-23 16:26:51.000000",
+		"deleted_at": null,
+		"language": null,
+		"password_changed_at": null,
+		"avatar": null
+	},
+	{
+		"table": "user_account",
+		"id": 1120427088730391585,
+		"email": "nathan@mail.com",
+		"password": "$2a$10$ORamBvw7Js3WeDIW.6jwuOyArAxIRojw8lxL2gRwCA34mMPZXmXgq",
+		"is_admin": false,
+		"name": "Nathan PAS",
+		"username": "nathan",
+		"phone": null,
+		"organization": null,
+		"subscribe_to_own_cards": false,
+		"created_at": "2023-11-23 16:28:37.000000",
+		"updated_at": null,
+		"deleted_at": null,
+		"language": null,
+		"password_changed_at": null,
+		"avatar": null
+	},
+	{
+		"table": "project",
+		"id": 1124858934478242846,
+		"name": "PlankaProject",
+		"background": null,
+		"created_at": "2023-11-29 19:13:54.000000",
+		"updated_at": null,
+		"background_image": null
+	},
+	{
+		"table": "project_manager",
+		"id": 1124858934528574495,
+		"project_id": 1124858934478242846,
+		"user_id": 1120425192351335456,
+		"created_at": "2023-11-29 19:13:54.000000",
+		"updated_at": null
+	},
+	{
+		"table": "board",
+		"id": 1124863522937766944,
+		"project_id": 1124858934478242846,
+		"position": 65535,
+		"name": "Sprint 1",
+		"created_at": "2023-11-29 19:23:01.000000",
+		"updated_at": null
+	},
+	{
+		"table": "board_membership",
+		"id": 1124863522988098593,
+		"board_id": 1124863522937766944,
+		"user_id": 1120425192351335456,
+		"created_at": "2023-11-29 19:23:01.000000",
+		"updated_at": null,
+		"role": "editor",
+		"can_comment": null
+	},
+	{
+		"table": "board_membership",
+		"id": 1124868428008522792,
+		"board_id": 1124863522937766944,
+		"user_id": 1120424574178034719,
+		"created_at": "2023-11-29 19:32:46.000000",
+		"updated_at": null,
+		"role": "editor",
+		"can_comment": null
+	},
+	{
+		"table": "board_membership",
+		"id": 1124868448598522792,
+		"board_id": 1124863522937766944,
+		"user_id": 1120427088730391585,
+		"created_at": "2023-11-29 19:32:46.000000",
+		"updated_at": null,
+		"role": "editor",
+		"can_comment": null
+	},
+	{
+		"table": "list",
+		"id": 1124863566457865250,
+		"board_id": 1124863522937766944,
+		"position": 65535,
+		"name": "Todo",
+		"created_at": "2023-11-29 19:23:06.000000",
+		"updated_at": null
+	}
+]
