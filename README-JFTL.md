@@ -17,7 +17,7 @@ REACT_APP_GRAVITY_BUILD_ID=abc-1
 docker compose -f docker-compose-test.yml up
 ```
 
-Planka should be available at [http://localhost:3000](http://localhost:3000).
+Planka should be available at [http://localhost:3001](http://localhost:3001).
 You can connect as `demo@demo.demo`, the password is, surprinsigly, `demo`.
 
 ## Running the tests

@@ -9,4 +9,4 @@ services:
     working_dir: /app
     entrypoint: ./install-and-run
     environment:
-      BASE_URL: http://planka:3000
+      BASE_URL: http://planka:3001

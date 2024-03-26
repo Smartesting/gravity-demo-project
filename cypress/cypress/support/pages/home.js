@@ -1,7 +1,7 @@
 Cypress.Commands.add("logout", () => {
 	cy.get(".right > :last-child").click();
 	cy.get(".content > .ui > :nth-child(2)").click();
-	cy.url().should("equal", "http://localhost:3000/login");
+	cy.url().should("equal", "http://localhost:3001/login");
 });
 
 Cypress.Commands.add("changeAvatar", () => {
@@ -104,9 +104,9 @@ Cypress.Commands.add("editCredentials", (oldpassword, username, email, password)
 	cy.get(".popup .form .positive").click();
 
 	// Always logout, as changing password sometimes disconnected but not always
-	cy.url().should("eq", "http://localhost:3000/");
+	cy.url().should("eq", "http://localhost:3001/");
 	cy.url().then((url) => {
-		if (url === "http://localhost:3000/") {
+		if (url === "http://localhost:3001/") {
 			cy.get("i.close").should("have.length", 1).click();
 			cy.logout();
 		}

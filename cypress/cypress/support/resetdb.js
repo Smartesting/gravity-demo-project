@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 async function truncateDB() {
 	const client = new Client(
-		process.env.DATABASE_URL || "postgres://postgres@localhost:5432/planka",
+		process.env.DATABASE_URL || "postgres://postgres@localhost:5431/planka",
 	);
 
 	await client.connect();
@@ -32,7 +32,7 @@ async function truncateDB() {
 
 async function insertTable(tables) {
 	const client = new Client(
-		process.env.DATABASE_URL || "postgres://postgres@localhost:5432/planka",
+		process.env.DATABASE_URL || "postgres://postgres@localhost:5431/planka",
 	);
 	await client.connect();
 	for (const table of tables) {
@@ -119,40 +119,40 @@ async function insertTable(tables) {
 				);
 				break;
 			/*case 'card_membership':
-                  
+
                                   break;*/
 			/*case 'card':
-                  
+
                                   break;*/
 			/*case 'card_label':
-                  
+
                                   break;*/
 			/*case 'action':
-                  
+
                                   break;*/
 			/*case 'task':
-                  
+
                                   break;*/
 			/*case 'card_subscription':
-                  
+
                                   break;*/
 			/*case 'attachment':
-                  
+
                                   break;*/
 			/*case 'notification':
-                  
+
                                   break;*/
 			/*case 'archive':
-                  
+
                                   break;*/
 			/*case 'migration':
-                  
+
                                   break;*/
 			/*case 'migration_lock':
-                  
+
                                   break;*/
 			/*case 'session':
-                  
+
                                   break;*/
 		}
 	}

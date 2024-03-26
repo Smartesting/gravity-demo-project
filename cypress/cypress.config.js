@@ -5,7 +5,7 @@ module.exports = defineConfig({
 	chromeWebSecurity: false,
 	defaultCommandTimeout: 10000,
 	e2e: {
-		baseUrl: process.env.BASE_URL || "http://localhost:3000",
+		baseUrl: process.env.BASE_URL || "http://localhost:3001",
 		setupNodeEvents(on, config) {
 			on("task", {
 				"db:truncate": async () => {
