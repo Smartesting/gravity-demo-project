@@ -1,7 +1,7 @@
 # Planka
-#### Elegant open source project tracking
+#### Elegant open source project tracking.
 
-![David (path)](https://img.shields.io/github/package-json/v/plankanban/planka) ![Docker Pulls](https://img.shields.io/docker/pulls/meltyshev/planka) ![GitHub](https://img.shields.io/github/license/plankanban/planka)
+![David (path)](https://img.shields.io/github/package-json/v/plankanban/planka) ![Docker Pulls](https://img.shields.io/badge/docker_pulls-5M%2B-%23066da5) ![GitHub](https://img.shields.io/github/license/plankanban/planka)
 
 ![](https://raw.githubusercontent.com/plankanban/planka/master/demo.gif)
 
@@ -10,21 +10,28 @@
 ## Features
 
 - Create projects, boards, lists, cards, labels and tasks
-- Add card members, track time, set a due date, add attachments, write comments
-- Markdown support in a card description and comment
+- Add card members, track time, set due dates, add attachments, write comments
+- Markdown support in card description and comments
 - Filter by members and labels
-- Customize project background
+- Customize project backgrounds
 - Real-time updates
-- User notifications
-- Internationalization
+- Internal notifications
+- Multiple interface languages
+- Single sign-on via OpenID Connect
 
 ## How to deploy Planka
 
-There are 2 types of installation:
-- [Without Docker](https://docs.planka.cloud/docs/installl-planka/Debian%20&%20Ubuntu) ([for Windows](https://docs.planka.cloud/docs/installl-planka/Windows))
-- [Dockerized](https://docs.planka.cloud/docs/installl-planka/Docker%20Compose)
+There are many ways to install Planka, [check them out](https://docs.planka.cloud/docs/intro).
 
 For configuration, please see the [configuration section](https://docs.planka.cloud/docs/category/configuration).
+
+## Mobile app
+
+Here is the [mobile app repository](https://github.com/LouisHDev/planka_app) maintained by the community, where you can build an app for iOS and Android.
+
+Alternatively, you can download the [Android APK](https://github.com/LouisHDev/planka_app/releases/latest/download/app-release.apk) directly.
+
+If you have an iOS device and would like to test the app, you can join [TestFlight](https://testflight.apple.com/join/Uwn41eY4) (limited to 200 participants).
 
 ## Contact
 
@@ -46,3 +53,7 @@ See the [development section](https://docs.planka.cloud/docs/Development).
 ## License
 
 Planka is [AGPL-3.0 licensed](https://github.com/plankanban/planka/blob/master/LICENSE).
+
+## Contributors
+
+[![](https://contrib.rocks/image?repo=plankanban/planka)](https://github.com/plankanban/planka/graphs/contributors)

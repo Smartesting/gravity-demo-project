@@ -1,8 +1,8 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import { Button, Grid, Icon, Modal } from 'semantic-ui-react';
+import { Button, Checkbox, Grid, Icon, Modal } from 'semantic-ui-react';
 import { usePopup } from '../../lib/popup';
 import { Markdown } from '../../lib/custom-ui';
 
@@ -32,6 +32,7 @@ const CardModal = React.memo(
     name,
     description,
     dueDate,
+    isDueDateCompleted,
     stopwatch,
     isSubscribed,
     isActivitiesFetching,
@@ -55,6 +56,7 @@ const CardModal = React.memo(
     onUpdate,
     onMove,
     onTransfer,
+    onDuplicate,
     onDelete,
     onUserAdd,
     onUserRemove,
@@ -80,6 +82,7 @@ const CardModal = React.memo(
     onClose,
   }) => {
     const [t] = useTranslation();
+    const [isLinkCopied, setIsLinkCopied] = useState(false);
 
     const isGalleryOpened = useRef(false);
 
@@ -116,6 +119,12 @@ const CardModal = React.memo(
       [onUpdate],
     );
 
+    const handleDueDateCompletionChange = useCallback(() => {
+      onUpdate({
+        isDueDateCompleted: !isDueDateCompleted,
+      });
+    }, [isDueDateCompleted, onUpdate]);
+
     const handleStopwatchUpdate = useCallback(
       (newStopwatch) => {
         onUpdate({
@@ -139,6 +148,19 @@ const CardModal = React.memo(
         isSubscribed: !isSubscribed,
       });
     }, [isSubscribed, onUpdate]);
+
+    const handleDuplicateClick = useCallback(() => {
+      onDuplicate();
+      onClose();
+    }, [onDuplicate, onClose]);
+
+    const handleCopyLinkClick = useCallback(() => {
+      navigator.clipboard.writeText(window.location.href);
+      setIsLinkCopied(true);
+      setTimeout(() => {
+        setIsLinkCopied(false);
+      }, 5000);
+    }, []);
 
     const handleGalleryOpen = useCallback(() => {
       isGalleryOpened.current = true;
@@ -217,6 +239,7 @@ const CardModal = React.memo(
                         onUserSelect={onUserAdd}
                         onUserDeselect={onUserRemove}
                       >
+                        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <button
                           type="button"
                           className={classNames(styles.attachment, styles.dueDate)}
@@ -266,6 +289,7 @@ const CardModal = React.memo(
                         onMove={onLabelMove}
                         onDelete={onLabelDelete}
                       >
+                        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <button
                           type="button"
                           className={classNames(styles.attachment, styles.dueDate)}
@@ -283,13 +307,24 @@ const CardModal = React.memo(
                         context: 'title',
                       })}
                     </div>
-                    <span className={styles.attachment}>
+                    <span className={classNames(styles.attachment, styles.attachmentDueDate)}>
                       {canEdit ? (
-                        <DueDateEditPopup defaultValue={dueDate} onUpdate={handleDueDateUpdate}>
-                          <DueDate value={dueDate} />
-                        </DueDateEditPopup>
+                        <>
+                          <Checkbox
+                            checked={isDueDateCompleted}
+                            disabled={!canEdit}
+                            onChange={handleDueDateCompletionChange}
+                          />
+                          <DueDateEditPopup defaultValue={dueDate} onUpdate={handleDueDateUpdate}>
+                            <DueDate
+                              withStatusIcon
+                              value={dueDate}
+                              isCompleted={isDueDateCompleted}
+                            />
+                          </DueDateEditPopup>
+                        </>
                       ) : (
-                        <DueDate value={dueDate} />
+                        <DueDate withStatusIcon value={dueDate} isCompleted={isDueDateCompleted} />
                       )}
                     </span>
                   </div>
@@ -314,10 +349,11 @@ const CardModal = React.memo(
                       )}
                     </span>
                     {canEdit && (
+                      // eslint-disable-next-line jsx-a11y/control-has-associated-label
                       <button
-                        onClick={handleToggleStopwatchClick}
                         type="button"
                         className={classNames(styles.attachment, styles.dueDate)}
+                        onClick={handleToggleStopwatchClick}
                       >
                         <Icon
                           name={stopwatch.startedAt ? 'pause' : 'play'}
@@ -333,7 +369,7 @@ const CardModal = React.memo(
             {(description || canEdit) && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <Icon name="align justify" className={styles.moduleIcon} />
+                  <Icon name="align left" className={styles.moduleIcon} />
                   <div className={styles.moduleHeader}>{t('common.description')}</div>
                   {canEdit ? (
                     <DescriptionEdit defaultValue={description} onUpdate={handleDescriptionUpdate}>
@@ -493,6 +529,23 @@ const CardModal = React.memo(
                     {t('action.move')}
                   </Button>
                 </CardMovePopup>
+                <Button fluid className={styles.actionButton} onClick={handleDuplicateClick}>
+                  <Icon name="copy outline" className={styles.actionIcon} />
+                  {t('action.duplicate')}
+                </Button>
+                {window.isSecureContext && (
+                  <Button fluid className={styles.actionButton} onClick={handleCopyLinkClick}>
+                    <Icon
+                      name={isLinkCopied ? 'linkify' : 'unlink'}
+                      className={styles.actionIcon}
+                    />
+                    {isLinkCopied
+                      ? t('common.linkIsCopied')
+                      : t('action.copyLink', {
+                          context: 'title',
+                        })}
+                  </Button>
+                )}
                 <DeletePopup
                   title="common.deleteCard"
                   content="common.areYouSureYouWantToDeleteThisCard"
@@ -527,6 +580,7 @@ CardModal.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   dueDate: PropTypes.instanceOf(Date),
+  isDueDateCompleted: PropTypes.bool,
   stopwatch: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   isSubscribed: PropTypes.bool.isRequired,
   isActivitiesFetching: PropTypes.bool.isRequired,
@@ -552,6 +606,7 @@ CardModal.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
   onTransfer: PropTypes.func.isRequired,
+  onDuplicate: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onUserAdd: PropTypes.func.isRequired,
   onUserRemove: PropTypes.func.isRequired,
@@ -580,6 +635,7 @@ CardModal.propTypes = {
 CardModal.defaultProps = {
   description: undefined,
   dueDate: undefined,
+  isDueDateCompleted: false,
   stopwatch: undefined,
 };
 

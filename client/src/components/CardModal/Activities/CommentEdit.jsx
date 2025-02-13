@@ -5,11 +5,12 @@ import { useTranslation } from 'react-i18next';
 import TextareaAutosize from 'react-textarea-autosize';
 import { Button, Form, TextArea } from 'semantic-ui-react';
 
-import { useClosableForm, useForm } from '../../../hooks';
+import { useForm } from '../../../hooks';
+import { focusEnd } from '../../../utils/element-helpers';
 
 import styles from './CommentEdit.module.scss';
 
-const CommentEdit = React.forwardRef(({ children, defaultData, onUpdate }, ref) => {
+const CommentEdit = React.forwardRef(({ defaultData, onUpdate, text, actions }, ref) => {
   const [t] = useTranslation();
   const [isOpened, setIsOpened] = useState(false);
   const [data, handleFieldChange, setData] = useForm(null);
@@ -35,12 +36,7 @@ const CommentEdit = React.forwardRef(({ children, defaultData, onUpdate }, ref) 
       text: data.text.trim(),
     };
 
-    if (!cleanData.text) {
-      textField.current.ref.current.select();
-      return;
-    }
-
-    if (!dequal(cleanData, defaultData)) {
+    if (cleanData.text && !dequal(cleanData, defaultData)) {
       onUpdate(cleanData);
     }
 
@@ -65,10 +61,9 @@ const CommentEdit = React.forwardRef(({ children, defaultData, onUpdate }, ref) 
     [submit],
   );
 
-  const [handleFieldBlur, handleControlMouseOver, handleControlMouseOut] = useClosableForm(
-    close,
-    isOpened,
-  );
+  const handleFieldBlur = useCallback(() => {
+    submit();
+  }, [submit]);
 
   const handleSubmit = useCallback(() => {
     submit();
@@ -76,12 +71,17 @@ const CommentEdit = React.forwardRef(({ children, defaultData, onUpdate }, ref) 
 
   useEffect(() => {
     if (isOpened) {
-      textField.current.ref.current.focus();
+      focusEnd(textField.current.ref.current);
     }
   }, [isOpened]);
 
   if (!isOpened) {
-    return children;
+    return (
+      <>
+        {actions}
+        {text}
+      </>
+    );
   }
 
   return (
@@ -99,22 +99,17 @@ const CommentEdit = React.forwardRef(({ children, defaultData, onUpdate }, ref) 
         onBlur={handleFieldBlur}
       />
       <div className={styles.controls}>
-        {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
-        <Button
-          positive
-          content={t('action.save')}
-          onMouseOver={handleControlMouseOver}
-          onMouseOut={handleControlMouseOut}
-        />
+        <Button positive content={t('action.save')} />
       </div>
     </Form>
   );
 });
 
 CommentEdit.propTypes = {
-  children: PropTypes.element.isRequired,
   defaultData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   onUpdate: PropTypes.func.isRequired,
+  text: PropTypes.element.isRequired,
+  actions: PropTypes.element.isRequired,
 };
 
 export default React.memo(CommentEdit);

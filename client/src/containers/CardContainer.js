@@ -20,14 +20,22 @@ const makeMapStateToProps = () => {
     const allLabels = selectors.selectLabelsForCurrentBoard(state);
     const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
-    const { name, dueDate, stopwatch, coverUrl, boardId, listId, isPersisted } = selectCardById(
-      state,
-      id,
-    );
+    const {
+      name,
+      description,
+      dueDate,
+      isDueDateCompleted,
+      stopwatch,
+      coverUrl,
+      boardId,
+      listId,
+      isPersisted,
+    } = selectCardById(state, id);
 
     const users = selectUsersByCardId(state, id);
     const labels = selectLabelsByCardId(state, id);
     const tasks = selectTasksByCardId(state, id);
+    const attachmentsTotal = selectors.selectAttachmentsTotalByCardId(state, id);
     const notificationsTotal = selectNotificationsTotalByCardId(state, id);
 
     const isCurrentUserEditor =
@@ -37,13 +45,16 @@ const makeMapStateToProps = () => {
       id,
       index,
       name,
+      description,
       dueDate,
+      isDueDateCompleted,
       stopwatch,
       coverUrl,
       boardId,
       listId,
       projectId,
       isPersisted,
+      attachmentsTotal,
       notificationsTotal,
       users,
       labels,
@@ -62,6 +73,7 @@ const mapDispatchToProps = (dispatch, { id }) =>
       onUpdate: (data) => entryActions.updateCard(id, data),
       onMove: (listId, index) => entryActions.moveCard(id, listId, index),
       onTransfer: (boardId, listId) => entryActions.transferCard(id, boardId, listId),
+      onDuplicate: () => entryActions.duplicateCard(id),
       onDelete: () => entryActions.deleteCard(id),
       onUserAdd: (userId) => entryActions.addUserToCard(userId, id),
       onUserRemove: (userId) => entryActions.removeUserFromCard(userId, id),

@@ -4,6 +4,9 @@ const zxcvbn = require('zxcvbn');
 const { getRemoteAddress } = require('../../../utils/remoteAddress');
 
 const Errors = {
+  NOT_ENOUGH_RIGHTS: {
+    notEnoughRights: 'Not enough rights',
+  },
   USER_NOT_FOUND: {
     userNotFound: 'User not found',
   },
@@ -33,6 +36,9 @@ module.exports = {
   },
 
   exits: {
+    notEnoughRights: {
+      responseType: 'forbidden',
+    },
     userNotFound: {
       responseType: 'notFound',
     },
@@ -42,7 +48,7 @@ module.exports = {
   },
 
   async fn(inputs) {
-    const { currentUser } = this.req;
+    const { currentSession, currentUser } = this.req;
 
     if (inputs.id === currentUser.id) {
       if (!inputs.currentPassword) {
@@ -58,6 +64,10 @@ module.exports = {
       throw Errors.USER_NOT_FOUND;
     }
 
+    if (user.email === sails.config.custom.defaultAdminEmail || user.isSso) {
+      throw Errors.NOT_ENOUGH_RIGHTS;
+    }
+
     if (
       inputs.id === currentUser.id &&
       !bcrypt.compareSync(inputs.currentPassword, user.password)
@@ -70,7 +80,7 @@ module.exports = {
     user = await sails.helpers.users.updateOne.with({
       values,
       record: user,
-      user: currentUser,
+      actorUser: currentUser,
       request: this.req,
     });
 
@@ -79,10 +89,14 @@ module.exports = {
     }
 
     if (user.id === currentUser.id) {
-      const accessToken = sails.helpers.utils.createToken(user.id, user.passwordUpdatedAt);
+      const { token: accessToken } = sails.helpers.utils.createJwtToken(
+        user.id,
+        user.passwordUpdatedAt,
+      );
 
       await Session.create({
         accessToken,
+        httpOnlyToken: currentSession.httpOnlyToken,
         userId: user.id,
         remoteAddress: getRemoteAddress(this.req),
         userAgent: this.req.headers['user-agent'],

@@ -36,7 +36,7 @@ module.exports = {
     },
     language: {
       type: 'string',
-      isNotEmptyString: true,
+      isIn: User.LANGUAGES,
       allowNull: true,
     },
     subscribeToOwnCards: {
@@ -67,6 +67,19 @@ module.exports = {
       throw Errors.USER_NOT_FOUND;
     }
 
+    if (user.email === sails.config.custom.defaultAdminEmail) {
+      /* eslint-disable no-param-reassign */
+      delete inputs.isAdmin;
+      delete inputs.name;
+      /* eslint-enable no-param-reassign */
+    } else if (user.isSso) {
+      if (!sails.config.custom.oidcIgnoreRoles) {
+        delete inputs.isAdmin; // eslint-disable-line no-param-reassign
+      }
+
+      delete inputs.name; // eslint-disable-line no-param-reassign
+    }
+
     const values = {
       ..._.pick(inputs, [
         'isAdmin',
@@ -82,7 +95,7 @@ module.exports = {
     user = await sails.helpers.users.updateOne.with({
       values,
       record: user,
-      user: currentUser,
+      actorUser: currentUser,
       request: this.req,
     });
 
